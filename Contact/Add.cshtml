@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Add New Contact";
+}
+@Html.Partial("_topHeader")
+<form class="form-control">
+    <div class="row-cols-1">
+        <label for="city">City</label>
+        <input class="form-control" id="city" placeholder="Enter city" />
+    </div>
+    <div class="row-cols-1">
+        <label for="Country">Country</label>
+        <input class="form-control" id="country" placeholder="Enter Country" />
+    </div>
+    <div class="row-cols-1">
+        <label for="email">E-mail</label>
+        <input class="form-control" id="email" placeholder="Enter email" />
+    </div>
+    <div class="row-cols-1">
+        <label for="mobile">Mobile</label>
+        <input class="form-control" id="mobile" placeholder="Enter mobile" />
+    </div>
+    <button class="m-2 btn btn-success">
+        <i class="fa-regular fa-floppy-disk"></i>
+        <span>Save</span>
+    </button>
+</form>
+

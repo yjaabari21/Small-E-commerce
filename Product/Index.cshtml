@@ -1,0 +1,102 @@
+﻿@using HelloWorld.Data
+@model List<Product>
+@{
+    string pageName = "Product";
+
+    ViewBag.Title = $"{pageName} List";
+    ViewBag.Link = $"Add";
+}
+@section links {
+    <link href="~/Content/Pages/@(pageName)-index.css" rel="stylesheet" />
+}
+@Html.Partial("_TopHeader")
+
+<table id="@(pageName)-list" class="my-table">
+    <thead>
+        <tr>
+            <th class="actions">Actions</th>
+            <th class="">Id</th>
+            <th class="">Product Name</th>
+            <th class="">Description</th>
+            <th class="">Price</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+@section scripts {
+    <script>
+        const pageName = "@(pageName)";
+        const mainTable = "@(pageName)-list";
+
+        //#region functions...
+
+        function getModel(obj) {
+            return {
+                id: obj['Id'],
+                name: obj['Name'],
+                description: obj['Description'],
+                price: obj['Price'],
+            };
+        }
+
+        function getModelsFromServer() {
+            $.ajax({
+                type: 'GET',
+                url: 'GetProd',
+                success: function (result) {
+                    buildHtml(result, pageName);
+                    /*console.log(result);*/
+                },
+                error: function (err) {
+                    document.getElementById(mainTable).innerHTML = err;
+                }
+            });
+        }
+
+        function buildHtml(result, targetEntity) {
+            let html = '';
+
+            for (i = 0; i < result.length; i++){
+                var productModel = getModel(result[i]);
+                html +=
+                    `
+        <tr>
+            <td>
+                <a class="btn btn-danger btn-sm btns" href="/${targetEntity}/Delete?id=${productModel.id}">
+                <i class="fa-solid fa-trash"></i>
+                <span>Delete</span>
+                </a>
+                <a class="btn btn-primary btn-sm btns" href="/${targetEntity}/Edit?id=${productModel.id}">
+                <i class="fa-solid fa-pen-to-square"></i>
+                <span>Edit</span>
+                </a>
+                <a class="btn btn-warning btn-sm btns" href="/${targetEntity}/Details?id=${productModel.id}">
+                <i class="fa-solid fa-circle-info"></i>
+                <span>Details</span>
+                </a>
+            </td>
+            <td class="">${productModel.id}</td>
+            <td class="">${productModel.name}</td>
+            <td class="">${productModel.description}</td>
+            <td class="">${`$`}${productModel.price}</td>
+        </tr>`;
+            }
+
+            let table = document.getElementById(mainTable);
+            let tbody = table.getElementsByTagName('tbody');
+            tbody[0].innerHTML = html;
+        }
+
+        //#region events...
+
+        //#endregion events
+
+        document.onload = getModelsFromServer();
+
+         document.getElementById('Plink')
+            .addEventListener('load', 
+                document.getElementById('Plink').classList.add('Active')
+            );
+    </script>
+}

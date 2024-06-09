@@ -1,0 +1,97 @@
+﻿.main{
+    display:grid;
+    grid-template-columns: 275px 700px 275px;
+    width : 100px;
+}
+.content {
+    border-right: 1px solid gray;
+    border-left: 1px solid gray;
+    justify-content: center;
+    align-items: center;
+    padding: 14px;
+    margin-right: -275%;
+    margin-left: 75%;
+}
+.content .btn-lm{
+    text-align:center;
+}
+#load{
+    background-color: transparent;
+    color:darkblue;
+    border : none;
+    text-decoration:underline;
+}
+.info {
+   position:fixed;
+    left:5%;
+}
+.Ads {
+    text-align: center;
+    margin: 14px;
+    padding: 14px;
+    position: fixed;
+    left: 80%;
+     z-index:1;
+}
+.Card{
+    background-color : whitesmoke;
+    margin : 12px;
+    padding: 8px;
+    margin-bottom: 20px;
+    border: solid 1px #000;
+    border-radius: 10px;
+    padding: 17px;
+    box-shadow: 2px 2px 20px 0px;
+}
+
+.Card span {
+    font-weight: 500;
+    font-style: italic;
+}
+.Btns {
+    margin: 12px 0;
+    display: flex;
+    justify-content: space-evenly;
+}
+.com , .like , .share{
+    width: 100%;
+    background-color:white;
+    font-weight:bolder;
+}
+.com:hover , .like:hover , .share:hover{
+    opacity: .80;
+}
+.Post{
+    font-weight : 500;
+    font-family :cursive;
+}
+.Add{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin : 18px 0;
+}
+.form .input{
+   width : 800px;
+}
+.input {
+    padding: 12px;
+    border-radius: 44px;
+    background-color: #e1dbdb;
+    border : 1px solid #000;
+}
+.profile {
+    margin: 0 12px;
+    height: 6vh;
+    width : 4%;
+    border-radius: 50%;
+    background-image: url('test1.png');
+    background-position: center;
+    background-size:cover;
+}
+.profile p{
+    visibility:hidden;
+}
+.cont a{
+    float : right;
+}

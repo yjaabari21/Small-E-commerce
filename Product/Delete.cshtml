@@ -1,0 +1,25 @@
+﻿
+<link href="~/Content/Product-style/style.css" rel="stylesheet" />
+@Html.Partial("_ProductHead")
+<h2>Delete</h2>
+
+
+
+<h3>Confirm That you Want To Delete this Product</h3>
+
+<form class="form-control" action="~/Product/Delete" method="post" enctype="application/x-www-form-urlencoded">
+    @*<div class="form-control m-2">
+        <label for="Id">Product Number</label>
+        <input id="Id" name="Id" type="text" placeholder="Product No#" />
+    </div>*@
+    <a href="~/Product/Index" class="btn btn-danger btn-sm">
+        <i class="fa-solid fa-trash"></i>
+        <span>Delete</span>
+    </a>
+</form>
+
+
+@*<a href="~/User" class="btn btn-secondary btn-sm">
+        <i class="fa-solid fa-ban"></i>
+        <span>Cancel</span>
+    </a>*@

@@ -1,0 +1,32 @@
+﻿.Prod-Header
+{
+    display : inline-block;
+    margin-bottom : 15px;
+    background-color: rgb(240 240 240);
+    padding : 12px;
+    border-radius : 14px;
+    width : 100%;
+}
+.Prod-Header a
+{
+    color: white;
+    border-radius: 12px;
+    text-decoration: none;
+    align-self: flex-end;
+    align-items: flex-end;
+    justify-content: flex-end;
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: black;
+    margin: 0 2px;
+    float: right;
+}
+.Prod-Header a span
+{
+    font-weight : 600;
+}
+.Head-title
+{
+    font-size : 21px;
+    font-weight : 600;
+}

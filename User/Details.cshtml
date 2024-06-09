@@ -1,0 +1,19 @@
+﻿@Html.Partial("_TopHeader")
+@using HelloWorld.Data
+@model  User
+
+
+<link href="~/Content/user-style/style.css" rel="stylesheet" />
+<h1>person's details</h1>
+<div class="align-items-center">
+    <h2 class="text-secondary text-capitalize">Personal details</h2>
+    <div class="align-self-center">
+        <img class="w-25" src="@Model.Image" />
+    </div>
+    <div class="card-body">
+        <h2>USERNAME : @Model.UserName</h2>
+        <h2>E-mail : @Model.Email</h2>
+        <h2>Phone : @Model.Mobile</h2>
+    </div>
+</div>
+

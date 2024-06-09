@@ -1,0 +1,37 @@
+﻿@{
+    string pageName = "Product";
+}
+
+@section links{
+    <link href="~/Content/Pages/style.css" rel="stylesheet" />
+    <link href="~/Content/Pages/@(pageName)-index.css" rel="stylesheet" />
+}
+<link href="~/Content/Product-style/style.css" rel="stylesheet" />
+@Html.Partial("_ProductHead")
+
+
+<h2>Add New Product</h2>
+
+<form class="form form-check form-control mt-2 mb-2" method="post" action="~/Product/Add" enctype="application/x-www-form-urlencoded">
+    <div class="row mb-2">
+        <label class="form-label">Name</label>
+        <input class="form-control w-75" name="name" value="" placeholder="Enter Name" type="text" />
+    </div>
+    <div class="row mb-2">
+        <label class="form-label">Description</label>
+        <input class="form-control w-75" name="description" value="" placeholder="Enter Description" type="text" />
+    </div>
+    <div class="row mb-2">
+        <label class="form-label" for="price">Price</label>
+        <input class="form-control w-75" name="Price" id="price" value="" placeholder="Enter Price" type="text" />
+    </div>
+    <div class="row mb-2">
+        <label class="form-label" for="image">IMAGE</label>
+        <input class="form-control w-75" name="image" id="image" type="file" />
+    </div>
+    <button type="submit" class="btn btn-outline-warning w-75">
+        <i class="fa-solid fa-floppy-disk"></i>
+        <span>Save</span>
+    </button>
+</form>
+

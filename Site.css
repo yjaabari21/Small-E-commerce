@@ -1,0 +1,85 @@
+﻿/* Set padding to keep content from hitting the edges */
+.body-content {
+    margin-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.top-header {
+    width: 100%;
+    background-color: #dbdbdb;
+    padding: 12px 20px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+    .top-header a {
+        float: right;
+    }
+
+    .top-header .top-header-title {
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+    .top-header .head-txt {
+        font-size: 21px
+    }
+
+.my-table {
+    border-collapse: collapse;
+}
+
+    .my-table .actions {
+        width: 20%;
+    }
+
+    .my-table thead {
+        background-color: lightgray;
+        color; #fff;
+    }
+
+        .my-table thead tr {
+        }
+
+            .my-table thead tr th {
+            }
+
+
+    .my-table tbody {
+    }
+
+        .my-table tbody tr {
+        }
+
+
+            .my-table tbody tr td {
+            }
+
+
+            .my-table thead tr th,
+            .my-table tbody tr td {
+                border: solid 1px #000;
+                padding: 10px;
+            }
+.Active{
+    background-color : red;
+    color : black;
+    font-weight : bold;
+}
+

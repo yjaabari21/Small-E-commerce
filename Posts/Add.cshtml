@@ -1,0 +1,63 @@
+﻿@using HelloWorld.Models
+@model PostsModel
+
+<link href="~/Content/Posts/Posts.css" rel="stylesheet" />
+<div class="Add">
+    <div class="profile">
+        <p>hi</p>
+    </div>
+    <form method="post" action="~/Posts/Add" enctype="application/x-www-form-urlencoded" class="form">
+        <input id="inp" class="input" type="text" name="Post" placeholder="Post Something" value="" />
+        <input id="inp" class="input" type="text" name="UserName" placeholder="UserName" value="" />
+        <input id="inp" class="input" type="text" name="Name" placeholder="Name" value="" />
+        <input id="inp" class="input" type="text" name="Email" placeholder="Email" value="" />
+        <button id="sendBtn" type="submit" class="btn btn-primary">Post</button>
+    </form>
+</div>
+<div id="msg"></div>
+@*<h1>@ViewBag.rand</h1>*@
+
+@foreach (var msgs in Model.TypeModelList)
+{
+    <li>@msgs.Name</li>
+    <li>@msgs.UserName</li>
+    <li>@msgs.Post</li>
+    <li>@msgs.Email</li>
+}
+
+@section scripts
+{
+    <script>
+        let messages = [
+           { message: '@ViewBag.msg' },
+           { message: '@ViewBag.msgUserName' },
+           { message: '@ViewBag.msgName' },
+           { message: '@ViewBag.msgEmail' },
+        ];
+        console.log(messages);
+        let html = ``;
+        function showMessage(message) {
+            console.log(message);
+            html = `
+<div class="container-fluid">
+    <p class="bg-danger fs-4 fw-bold p-2 text-capitalize">
+        <span class="fa-solid fa-triangle-exclamation m-2" style="color: #ffee2e; font-size:32px;"></span>
+        ${message}
+    </p>
+</div>`;
+
+            document.getElementById('msg').innerHTML = document.getElementById('msg').innerHTML + html;
+        };
+
+        //$(document).ready(function () {
+        //    if (messages != null && messages.length > 0) {
+        //        messages.forEach(function (item) {
+        //            if (item.message != null && item.message.length > 0) {
+        //                showMessage(item.message);
+        //            }
+        //        });
+        //        console.log('Faild');
+        //    }
+        //});
+    </script>
+}

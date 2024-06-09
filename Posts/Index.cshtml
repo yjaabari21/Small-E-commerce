@@ -1,0 +1,272 @@
+﻿@using HelloWorld.Models
+@model PostsModel
+
+@{
+    string pageName = "Posts";
+
+    ViewBag.Title = $"{pageName} List";
+    ViewBag.Link = $"Add";
+
+}
+@section links {
+    <link href="~/Content/Posts/loading.css" rel="stylesheet" />
+    <link href="~/Content/Posts/Posts.css" rel="stylesheet" />
+}
+@Html.Partial("_TopHeader")
+
+@*<ul>
+        <h2 class="Head-title">Locations</h2>
+        @foreach (var item in Model.AdressModelList)
+        {
+            <li>@item.Country</li>
+            <li>@item.CityName</li>
+            <li>@item.PostalCode</li>
+            <br/>
+        }
+    </ul>*@
+
+<div class="mask" id="mask">
+    <div class="box"></div>
+</div>
+
+<div class="main">
+    <div class="info" id="inf">
+        <h2>Information</h2>
+        <div id="outputN">Name : lorem ipsum</div>
+        <div id="outputU">UserName : LoremIpsum</div>
+        <div id="outputE">Email : LoeremIpsum@mail.vb</div>
+    </div>
+    <div class="content">
+        <h2>Posts</h2>
+        <div id="output"></div>
+        @*<div class="btn-lm">
+                <button id="load">More Posts</button>
+            </div>*@
+    </div>
+    <div class="Ads">
+        <h2>Ads</h2>
+        <div>Ads 1</div>
+        <div>Ads 2</div>
+        <div>Ads 3</div>
+        <div>Ads 4</div>
+        <div>Ads 5</div>
+        <div>Ads 6</div>
+    </div>
+</div>
+
+
+@section scripts
+{
+    <script>
+        const pageName = "@(pageName)";
+        const mainTable = "@(pageName)-list";
+        let _pageNumber = 1;
+        let i = 0;
+        let _isAjaxReady;
+        //let x = 1000;
+        /*var v = document.getElementById('inp').value;*/
+
+        function getModel(obj) {
+            return {
+                id: obj['Id'],
+                name: obj['Name'],
+                uName: obj['UserName'],
+                posts: obj['Post'],
+                email: obj['Email'],
+                date: obj['Date'],
+            };
+        }
+
+        function getPostFromServer()
+        {
+            $.ajax({
+                url: `GetPosts?PageNumber=${_pageNumber}`,
+                type: 'GET',
+                success: function (result)
+                {
+                    CreateCard(result['DataList'], pageName);
+                    _isAjaxReady = false;
+                    //document.getElementById('sendBtn').addEventListener('click', function send() {
+                    //    v = document.getElementById('inp').value;
+                    //    console.log('v :', v);
+                    //    console.log(result['DataList']);
+                    //    console.log(result);
+                    //        sendPostsToServer(result['DataList'][0].Id, v, result['DataList']);
+                    //});
+                    //sendPostsToServer();
+                },
+                error: function (err)
+                {
+                    document.getElementById('output').innerHTML = err;
+                }
+            });
+        }
+
+        //function sendPostsToServer(id , res)
+        //{
+        //    const profile = {
+        //     ID: id + 1,
+        //     Name: 'my Name',
+        //     uName: '99Mdsams',
+        //     post: '',
+        //     email: 'myName42@pm.com',
+        //    };
+        //    console.log('Your Post is :', profile['post']);
+        //    console.log('results' , res);
+        //    console.log(profile);
+        //    //}
+        //    $.ajax({
+        //        url : 'GetPosts',
+        //        type: 'POST',
+        //        data: JSON.stringify(res),
+        //        success: function (result) {
+        //            //console.log(result['DataList']);
+        //            console.log(result);
+
+        //        },
+        //        error: function (err) {
+        //            console.log('Faild');
+        //        }
+        //    });
+        //}
+
+        function CreateCard(res) {
+            let html = '';
+           for (i = 0; i < res.length; i++) {
+                 var obj = res[i];
+                 var postsModel = getModel(obj);
+                 html += `
+<div class="Card">
+    <div class="cont">
+    <a class="btn btn-danger m-1" href="Delete?id=${postsModel.id}">
+        <i class="fa-solid fa-trash" style="color: #fcfcfd;"></i>
+        <span>Delete</span>
+    </a>
+    <a class="btn btn-primary m-1" href="Edit?id=${postsModel.id}">
+        <i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i>
+        <span>Edit</span>
+    </a>
+</div>
+    <input type="text" value="${postsModel.id}">
+    <div class="names">
+        <span class"date">${postsModel.date}</span>
+        <h2 class"Name">${postsModel.name}</h2>
+        <h4 class"UName">${postsModel.uName}</h4>
+    </div>
+    <div class="Post">${postsModel.posts}</div>
+    <div class="Btns">
+        <button class="like">
+            <i class="fa-regular fa-thumbs-up"></i>
+            <span>Like</span>
+        </button>
+        <button class="com">
+            <i class="fa-regular fa-comment"></i>
+            <span>Comment</span>
+        </button>
+        <button class="share">
+            <i class="fa-solid fa-share"></i>
+            <span>Share</span>
+        </button>
+    </div>
+</div>`;
+
+            }
+
+            document.getElementById('output').innerHTML = document.getElementById('output').innerHTML+html;
+        }
+
+        function moreCard(res){
+            let html = '';
+            for (i = 0; i < res.length; i++) {
+                var obj = res[i];
+                var postsModel = getModel(obj);
+                html +=
+                    `
+         <div class="Card">
+             <div class="cont">
+    <a class="btn btn-danger m-1" href="Delete?id=${postsModel.id}">
+        <i class="fa-solid fa-trash" style="color: #fcfcfd;"></i>
+        <span>Delete</span>
+    </a>
+    <a class="btn btn-primary m-1" href="Edit?id=${postsModel.id}">
+        <i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i>
+        <span>Edit</span>
+    </a>
+</div>
+    <input type="text" value="${postsModel.id}">
+         <div class="names">
+         <span class"date">${postsModel.date}</span>
+         <h2 class"Name">${postsModel.name}</h2>
+         <h4 class"UName">${postsModel.uName}</h4>
+         </div>
+         <div class="Post">${postsModel.posts}</div>
+         <div class="Btns">
+         <button class="like">
+         <i class="fa-regular fa-thumbs-up"></i>
+         <span>Like</span>
+         </button>
+         <button class="com">
+         <i class="fa-regular fa-comment"></i>
+          <span>Comment</span>
+          </button>
+          <button class="share">
+          <i class="fa-solid fa-share"></i>
+          <span>Share</span>
+          </button>
+         </div>
+         </div>
+         `;
+            }
+            document.getElementById('output').innerHTML = document.getElementById('output').innerHTML + html;
+           }
+
+        function LoadMore() {
+            _pageNumber++;
+            console.log(_pageNumber);
+                $.ajax({
+                    url: `GetPosts?PageNumber=${_pageNumber}`,
+                    type: "GET",
+                    success: function (data) {
+                        moreCard(data['DataList']);
+                        document.getElementById('mask').style.display = 'none';
+                        //_isAjaxReady = true;
+                    },
+                    error: function (err) {
+                        console.log('error');
+                    }
+                });
+        }
+
+
+        //let _isAjaxReady = false;
+        window.addEventListener("scroll", (event) => {
+            let scroll = this.scrollY;
+            let bodyHeight = document.body.offsetHeight;
+            //console.log(bodyHeight);
+            //console.log(scroll);
+
+            if (scroll >= (bodyHeight - 1000)) {
+                if (_isAjaxReady == false) {
+                    document.getElementById('mask').style.display = 'block';
+                    //alert();
+                }
+                /*if (_isAjaxReady == true) {
+                    document.getElementById('mask').style.display = 'none';
+                }*/
+                //x += 1000;
+                //console.log(x)
+                LoadMore();
+            }
+        });
+
+        document.onload = getPostFromServer();
+
+        document.getElementById('Polink')
+            .addEventListener('load',
+                document.getElementById('Polink').classList.add('Active')
+        );
+
+    </script>
+}
+
+

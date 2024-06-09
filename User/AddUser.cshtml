@@ -1,0 +1,33 @@
+﻿<link href="~/Content/user-style/style.css" rel="stylesheet" />
+@Html.Partial("_TopHeader")
+<h3>Adding new Users</h3>
+
+<form class="form form-check form-control mt-2 mb-2" method="post" action="~/User/AddUser" enctype="application/x-www-form-urlencoded">
+    @*<div class="row mb-2">
+            <label class="form-label" for="id">ID</label>
+            <input class="form-control w-75" name="id" id="id" value="" placeholder="Enter an Id" type="text" />
+        </div>*@
+    <div class="row mb-2">
+        <label class="form-label" for="username">USERNAME</label>
+        <input class="form-control w-75" name="username" id="ID" value="" placeholder="Enter a USERNAME" type="text" />
+    </div>
+    <div class="row mb-2">
+        <label class="form-label" for="email">Email</label>
+        <input class="form-control w-75" name="email" id="ID" value="" placeholder="Enter an EMAIl" type="text" />
+    </div>
+    <div class="row mb-2">
+        <label class="form-label" for="mobile">Mobile</label>
+        <input class="form-control w-75" name="mobile" id="mobile" value="" placeholder="Enter an Mobile Number" type="text" />
+    </div>
+    <div class="row mb-2">
+        <label class="form-label" for="image">IMAGE</label>
+        <input class="form-control w-75" name="image" id="image" type="file" />
+    </div>
+    <button type="submit" class="btn btn-outline-dark w-75">
+        <i class="fa-solid fa-floppy-disk"></i>
+        <span>Save</span>
+    </button>
+</form>
+
+
+

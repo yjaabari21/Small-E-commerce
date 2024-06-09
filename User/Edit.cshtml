@@ -1,0 +1,42 @@
+﻿@using HelloWorld.Data
+@using HelloWorld.Models
+@model  User
+<link href="~/Content/user-style/style.css" rel="stylesheet" />
+@*<h1>person's details</h1>
+    <div class="align-items-center">
+        <h2 class="text-secondary text-capitalize">Personal details</h2>
+        <div class="align-self-center">
+            <img class="w-25" src="@Model.Image" />
+        </div>
+        <div class="card-body">
+            <h2>USERNAME : @Model.UserName</h2>
+            <h2>E-mail : @Model.Email</h2>
+            <h2>Phone : @Model.Mobile</h2>
+        </div>
+    </div>
+
+    <hr />*@
+
+
+
+@Html.Partial("_TopHeader")
+
+<form class="form-control" action="~/User/Edit" method="post" enctype="application/x-www-form-urlencoded">
+    <div class="form-control m-2">
+        <label for="Email">Email</label>
+        <input id="Email" name="Email" type="text" placeholder="New Email" value="@Model.Email" />
+    </div>
+    <div class="form-control m-2">
+        <label for="Mobile">Mobile</label>
+        <input id="Mobile" name="Mobile" type="text" placeholder="New Mobile" value="@Model.Mobile" />
+    </div>
+    @*<div class="form-control m-2">
+            <label for="image">Enter Your New email</label>
+            <input id="image" type="file" placeholder="New Image" />
+        </div>*@
+    @*<input class="btn btn-outline-danger" type="submit" />*@
+    <button type="submit" class="btn btn-success btn-sm">
+        <i class="fa-solid fa-floppy-disk"></i>
+        <span>Save</span>
+    </button>
+</form>

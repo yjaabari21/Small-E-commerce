@@ -1,0 +1,29 @@
+﻿@using HelloWorld.Data
+@using HelloWorld.Models
+@model Offers
+@{
+    ViewBag.Title = "Edit Offer";
+}
+@Html.Partial("_topHeader")
+<h2>Edit Page</h2>
+
+
+<form class="form-control" action="~/Offers/Edit" method="post" enctype="application/x-www-form-urlencoded">
+    <div class="form-control row-cols-1 m-2">
+        <label for="Name">Name</label>
+        <input class="p-2" id="Name" name="Name" type="text" placeholder="New Name" value="" />
+    </div>
+    <div class="form-control row-cols-1 m-2">
+        <label for="desc">Name</label>
+        <input class="p-2" id="desc" name="Description" type="text" placeholder="Description" value="" />
+    </div>
+    <div class="form-control row-cols-1 m-2">
+        <label for="Price">Price</label>
+        <input class="p-2" id="Price" name="Price" type="text" placeholder="New Price" value="" />
+    </div>
+    <button type="submit" class="btn btn-success btn-sm">
+        <i class="fa-solid fa-floppy-disk"></i>
+        <span>Save</span>
+    </button>
+</form>
+

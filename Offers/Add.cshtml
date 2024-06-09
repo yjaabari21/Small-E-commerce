@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Add Offer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.Partial("_TopHeader")
+<h3>Adding New Offers</h3>
+
+<form class="form form-check form-control mt-2 mb-2" method="post" action="~/Offers/Add" enctype="application/x-www-form-urlencoded">
+    <div class="row-cols-1 mb-2">
+        <label class="form-label" for="name">USERNAME</label>
+        <input class="form-control w-75" name="Name" id="ID" value="" placeholder="Enter a USERNAME" type="text" />
+    </div>
+    <div class="row-cols-1 mb-2">
+        <label class="form-label" for="desc">Description</label>
+        <input class="form-control w-75" name="Description" id="desc" value="" placeholder="Enter an EMAIl" type="text" />
+    </div>
+    <div class="row-cols-1 mb-2">
+        <label class="form-label" for="mobile">Price</label>
+        <input class="form-control w-75" name="mobile" id="mobile" value="" placeholder="Enter an Mobile Number" type="text" />
+    </div>
+    <div class="row-cols-1 mb-2">
+        <label class="form-label" for="image">IMAGE</label>
+        <input class="form-control w-75" name="image" id="image" type="file" />
+    </div>
+    <button type="submit" class="btn btn-outline-dark w-75">
+        <i class="fa-solid fa-floppy-disk"></i>
+        <span>Save</span>
+    </button>
+</form>

@@ -1,0 +1,126 @@
+﻿@using HelloWorld.Data
+@model List<User>
+@{
+    string pageName = "User";
+    ViewBag.Title = $"{pageName}List";
+    ViewBag.Link = $"AddUser";
+}
+@Html.Partial("_TopHeader")
+
+@*<table class="table table-striped table-bordered">*@
+
+<table id="@(pageName)-list" class="my-table">
+    <thead class="">
+        <tr>
+            <th class="actions">Actions</th>
+            <th>Id</th>
+            <th>User Name</th>
+            <th>Email</th>
+            <th>Mobile</th>
+        </tr>
+    </thead>
+    <tbody>
+        @*@foreach (User item in (List<User>)Model)
+            {
+                <tr>
+                    <td>
+                        <a href="~/User/Delete?id=@item.Id" class="btn btn-danger btn-sm">
+                            <i class="fa-solid fa-trash"></i>
+                            <span>Delete</span>
+                        </a>
+                        <a href="~/User/Edit?id=@item.Id" class="btn btn-primary btn-sm">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            <span>Edit</span>
+                        </a>
+                        <a href="~/User/Details?id=@item.Id" class="btn btn-warning btn-sm">
+                            <i class="fa-solid fa-circle-info"></i>
+                            <span>Details</span>
+                        </a>
+                    </td>
+                    <td>@item.Id</td>
+                    <td>@item.UserName</td>
+                    <td>@item.Email</td>
+                    <td>@item.Mobile</td>
+                </tr>
+            }*@
+    </tbody>
+</table>
+<div id="error-output"></div>
+@section scripts{
+    <script>
+        const pageName = "@(pageName)";
+        const mainTable = "@(pageName)-list";
+        function getModel(result) {
+            return {
+                id: result[i]['Id'],
+                Uname: result[i]['UserName'],
+                Email: result[i]['Email'],
+                Mobile: result[i]['Mobile'],
+            };
+        }
+        // function getUser(result)
+        //{
+        //    return {
+        //        id: result[i]['Id'],
+        //        Uname: result[i]['UserName'],
+        //        Email: result[i]['Email'],
+        //        Mobile: result[i]['Mobile']
+        //    };
+        //}
+        function getUserfromServer() {
+            $.ajax({
+                type: 'GET',
+                url: 'GetUser',
+                success: function (result) {
+                    createTable(result, pageName);
+                    console.log(result);
+                },
+                error: function (err) {
+                    document.getElementById("error-output").innerHTML = err;
+                }
+            });
+        }
+        function createTable(result, targetPage) {
+            let html = '';
+
+            for (i = 0; i < result.length; i++) {
+                var UserModel = getModel(result);
+                html +=
+                    `
+                       <tr>
+                           <td>
+                             <a class="btn btn-danger btn-sm btns" href="/${targetPage}/Delete?id=${UserModel.id}">
+                               <i class="fa-solid fa-trash"></i>
+                               <span>Delete</span>
+                             </a>
+                             <a class="btn btn-primary btn-sm btns" href="/${targetPage}/Edit?id=${UserModel.id}">
+                              <i class="fa-solid fa-pen-to-square"></i>
+                              <span>Edit</span>
+                             </a>
+                             <a class="btn btn-warning btn-sm btns" href="/${targetPage}/Details?id=${UserModel.id}">
+                              <i class="fa-solid fa-circle-info"></i>
+                              <span>Details</span>
+                             </a>
+                           </td>
+                          <td class="">${UserModel.id}</td>
+                          <td class="">${UserModel.Uname}</td>
+                          <td class="">${UserModel.Email}</td>
+                          <td class="">${UserModel.Mobile}</td>
+                       </tr>
+                       `;
+            }
+
+            let table = document.getElementById(mainTable);
+            let tbody = table.getElementsByTagName('tbody');
+            tbody[0].innerHTML = html;
+        }
+
+        document.onload = getUserfromServer();
+
+        document.getElementById('Ulink')
+            .addEventListener('load',
+                document.getElementById('Ulink').classList.add('Active')
+            );
+    </script>
+}
+

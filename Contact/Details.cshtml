@@ -1,0 +1,24 @@
+﻿@using HelloWorld.Data
+@model List<Offers>
+<link href="~/Content/user-style/style.css" rel="stylesheet" />
+<h2>Offers</h2>
+
+<div class="row row-cols-3 justify-content-center">
+    @foreach (Offers item in (List<Offers>)Model)
+    {
+        <div class="shadow m-2 text-center">
+            <div class="">
+                <img class="w-50" src="@item.Image" />
+                <h2 class="text-uppercase">@item.Name</h2>
+                <h4>@item.Description</h4>
+            </div>
+            <button class="btn btn-outline-danger m-2">
+                <i class="fa-solid fa-dollar-sign"></i>
+                <span>@item.Price</span>
+            </button>
+            @*<button class="btn btn-dark m-2 text-decoration-line-through" disabled>$@item</button>*@
+        </div>
+
+    }
+</div>
+

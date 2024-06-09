@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/fontawesome-free-6.4.2-web/css/all.min.css" rel="stylesheet" />
+    <link href="/Content/bootstrap.css" rel="stylesheet">
+    <link href="/Content/site.css" rel="stylesheet">
+
+    @RenderSection("links", required: false)
+</head>
+<body>
+
+    <div class="container body-content">
+        <!--this is where page gets rendered by razor code-->
+        <div class="Add">
+            <div class="profile">
+                <p>hi</p>
+            </div>
+            <form method="post" action="~/Posts/index" enctype="application/x-www-form-urlencoded" class="form">
+                <input class="input" type="text" name="Post" placeholder="Post Something" />
+                <input type="submit" class="btn btn-primary" value="" />
+            </form>
+            <div></div>
+
+        </div>
+        @RenderBody()
+        <!--end this is where page gets rendered by razor code-->
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+</body>
+
+@RenderSection("scripts", required: false)
+</html>
